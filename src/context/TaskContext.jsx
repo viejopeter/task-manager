@@ -21,9 +21,13 @@ const TaskProvider = ({children}) => {
  }
 
  const addTask =(newTask) =>{
-     setListTasks(
-        prev => [{...prev,newTask}]
-     )
+
+     setListTasks(prevListTask => {
+         const lastId = prevListTask.length > 0 ? prevListTask[prevListTask.length - 1].id : 0
+
+         return [...prevListTask,{...newTask,id: lastId + 1}]
+      
+      })
  }
 
  return (
